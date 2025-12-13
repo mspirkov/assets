@@ -1,5 +1,9 @@
 # Yii Assets Change Log
 
+## 5.1.3 under development
+
+- no changes in this release.
+
 ## 5.1.2 December 13, 2025
 
 - Enh #169: Add PHP 8.5 support (@vjik)
