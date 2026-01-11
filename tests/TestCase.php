@@ -30,6 +30,8 @@ use function readdir;
 use function sprintf;
 use function str_replace;
 
+use const DIRECTORY_SEPARATOR;
+
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected Aliases $aliases;

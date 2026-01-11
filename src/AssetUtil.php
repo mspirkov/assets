@@ -19,6 +19,8 @@ use function mb_strlen;
 use function strncmp;
 use function substr_compare;
 
+use const LOCK_EX;
+
 /**
  * `AssetUtil` shared functions.
  *

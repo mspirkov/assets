@@ -61,7 +61,7 @@ return [
 
         if ($params['yiisoft/assets']['assetManager']['publisher'] !== null) {
             $assetManager = $assetManager->withPublisher(
-                $container->get($params['yiisoft/assets']['assetManager']['publisher'])
+                $container->get($params['yiisoft/assets']['assetManager']['publisher']),
             );
         }
 

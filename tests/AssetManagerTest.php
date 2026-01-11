@@ -166,7 +166,7 @@ final class AssetManagerTest extends TestCase
         $iterator = new RecursiveDirectoryIterator($sourcePath, RecursiveDirectoryIterator::SKIP_DOTS);
         $hash = $this->getPublishedHash(
             $sourcePath . FileHelper::lastModifiedTime($sourcePath) . iterator_count($iterator),
-            $this->publisher
+            $this->publisher,
         );
 
         $this->assertEmpty($this->getRegisteredBundles($this->manager));
@@ -195,7 +195,7 @@ final class AssetManagerTest extends TestCase
         $iterator = new RecursiveDirectoryIterator($sourcePath, RecursiveDirectoryIterator::SKIP_DOTS);
         $hash = $this->getPublishedHash(
             $sourcePath . FileHelper::lastModifiedTime($sourcePath) . iterator_count($iterator),
-            $this->publisher
+            $this->publisher,
         );
 
         $this->assertEmpty($this->getRegisteredBundles($this->manager));
@@ -518,7 +518,7 @@ final class AssetManagerTest extends TestCase
         $iterator = new RecursiveDirectoryIterator($sourcePath, RecursiveDirectoryIterator::SKIP_DOTS);
         $hash = $this->getPublishedHash(
             $sourcePath . FileHelper::lastModifiedTime($sourcePath) . iterator_count($iterator),
-            $this->publisher
+            $this->publisher,
         );
 
         $this->assertSame(
@@ -707,7 +707,7 @@ final class AssetManagerTest extends TestCase
 
         $this->expectException(InvalidConfigException::class);
         $this->expectExceptionMessage(
-            'JavaScript or CSS options should be list of key/value pairs with string keys. Got integer key.'
+            'JavaScript or CSS options should be list of key/value pairs with string keys. Got integer key.',
         );
         $manager->register(JsOptionsWithIntegerKeyAsset::class);
     }

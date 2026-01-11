@@ -15,8 +15,11 @@ use Yiisoft\Assets\AssetPublisher;
 use Yiisoft\Assets\AssetPublisherInterface;
 use Yiisoft\Di\Container;
 use Yiisoft\Di\ContainerConfig;
+use PHPUnit\Framework\TestCase;
 
-final class ConfigTest extends \PHPUnit\Framework\TestCase
+use function dirname;
+
+final class ConfigTest extends TestCase
 {
     public function testBase(): void
     {
@@ -40,8 +43,8 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
                 $this->getDiConfig($params)
                 + [
                     LoggerInterface::class => new NullLogger(),
-                ]
-            )
+                ],
+            ),
         );
     }
 

@@ -9,6 +9,7 @@ use RecursiveDirectoryIterator;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\Exception\InvalidConfigException;
 use Yiisoft\Files\FileHelper;
+use Yiisoft\Files\PathMatcher\PathMatcherInterface;
 
 use function array_key_exists;
 use function crc32;
@@ -63,8 +64,7 @@ final class AssetPublisher implements AssetPublisherInterface
         private readonly Aliases $aliases,
         private bool $forceCopy = false,
         private bool $linkAssets = false,
-    ) {
-    }
+    ) {}
 
     public function publish(AssetBundle $bundle): array
     {
@@ -291,7 +291,7 @@ final class AssetPublisher implements AssetPublisherInterface
              * @psalm-var array{
              *   dirMode: int,
              *   fileMode: int,
-             *   filter?: \Yiisoft\Files\PathMatcher\PathMatcherInterface,
+             *   filter?: PathMatcherInterface,
              *   recursive?: bool,
              *   beforeCopy?: callable,
              *   afterCopy?: callable,

@@ -130,12 +130,12 @@ final class AssetConverterTest extends TestCase
         $converter->convert('test.php', $this->tmpPath);
         $initialConvertTime = file_get_contents($this->tmpPath . '/test.txt');
 
-        $converter = $converter->withIsOutdatedCallback(static fn () => false);
+        $converter = $converter->withIsOutdatedCallback(static fn() => false);
 
         $converter->convert('test.php', $this->tmpPath);
         $this->assertStringEqualsFile($this->tmpPath . '/test.txt', $initialConvertTime);
 
-        $converter = $converter->withIsOutdatedCallback(static fn () => true);
+        $converter = $converter->withIsOutdatedCallback(static fn() => true);
 
         $converter->convert('test.php', $this->tmpPath);
         $this->assertNotEquals($initialConvertTime, file_get_contents($this->tmpPath . '/test.txt'));
@@ -153,7 +153,7 @@ final class AssetConverterTest extends TestCase
                     'command' => '-r',
                     'path' => '@sourcePath/sass',
                 ],
-            ]
+            ],
         );
 
         $this->assertFileExists($this->aliases->get('@root/tests/public/sass/custom.css'));
@@ -183,7 +183,7 @@ final class AssetConverterTest extends TestCase
         $this->assertInstanceOf(AssetConverterInterface::class, $converter);
         $this->assertNotSame($this->converter, $converter);
 
-        $converter = $this->converter->withIsOutdatedCallback(static fn () => false);
+        $converter = $this->converter->withIsOutdatedCallback(static fn() => false);
         $this->assertInstanceOf(AssetConverterInterface::class, $converter);
         $this->assertNotSame($this->converter, $converter);
     }

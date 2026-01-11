@@ -205,7 +205,7 @@ final class AssetConverter implements AssetConverterInterface
         string $sourceFile,
         string $targetFile,
         string $sourceExtension,
-        string $targetExtension
+        string $targetExtension,
     ): bool {
         if (!is_file("$basePath/$targetFile")) {
             return true;
@@ -247,7 +247,7 @@ final class AssetConverter implements AssetConverterInterface
         string $basePath,
         string $asset,
         string $result,
-        ?string $options = null
+        ?string $options = null,
     ): bool {
         $basePath = $this->aliases->get($basePath);
 
@@ -285,12 +285,12 @@ final class AssetConverter implements AssetConverterInterface
         if ($status === 0) {
             $this->logger->debug(
                 "Converted $asset into $result:\nSTDOUT:\n$stdout\nSTDERR:\n$stderr",
-                [__METHOD__]
+                [__METHOD__],
             );
         } else {
             $this->logger->error(
                 "AssetConverter command '$command' failed with exit code $status:\nSTDOUT:\n$stdout\nSTDERR:\n$stderr",
-                [__METHOD__]
+                [__METHOD__],
             );
         }
 

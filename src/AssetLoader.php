@@ -47,23 +47,22 @@ final class AssetLoader implements AssetLoaderInterface
         private bool $appendTimestamp = false,
         private array $assetMap = [],
         private ?string $basePath = null,
-        private ?string $baseUrl = null
-    ) {
-    }
+        private ?string $baseUrl = null,
+    ) {}
 
     public function getAssetUrl(AssetBundle $bundle, string $assetPath): string
     {
         if (!$bundle->cdn && empty($this->basePath) && empty($bundle->basePath)) {
             throw new InvalidConfigException(
-                'basePath must be set in AssetLoader->withBasePath($path) or ' .
-                'AssetBundle property public ?string $basePath = $path'
+                'basePath must be set in AssetLoader->withBasePath($path) or '
+                . 'AssetBundle property public ?string $basePath = $path',
             );
         }
 
         if (!$bundle->cdn && $this->baseUrl === null && $bundle->baseUrl === null) {
             throw new InvalidConfigException(
-                'baseUrl must be set in AssetLoader->withBaseUrl($path) or ' .
-                'AssetBundle property public ?string $baseUrl = $path'
+                'baseUrl must be set in AssetLoader->withBaseUrl($path) or '
+                . 'AssetBundle property public ?string $baseUrl = $path',
             );
         }
 
