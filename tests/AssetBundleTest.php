@@ -116,7 +116,7 @@ final class AssetBundleTest extends TestCase
         $manager = $this->manager->withLoader(
             $this->loader
                 ->withBasePath('@asset')
-                ->withBaseUrl('@assetUrl')
+                ->withBaseUrl('@assetUrl'),
         );
 
         $this->assertEmpty($this->getRegisteredBundles($manager));

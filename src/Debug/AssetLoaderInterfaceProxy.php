@@ -12,8 +12,7 @@ final class AssetLoaderInterfaceProxy implements AssetLoaderInterface
     public function __construct(
         private readonly AssetLoaderInterface $assetLoader,
         private readonly AssetCollector $assetCollector,
-    ) {
-    }
+    ) {}
 
     public function getAssetUrl(AssetBundle $bundle, string $assetPath): string
     {

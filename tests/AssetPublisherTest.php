@@ -19,6 +19,8 @@ use function is_file;
 use function is_link;
 use function sprintf;
 
+use const DIRECTORY_SEPARATOR;
+
 final class AssetPublisherTest extends TestCase
 {
     protected function tearDown(): void
@@ -63,7 +65,7 @@ final class AssetPublisherTest extends TestCase
 
     public function testSourceWithHashCallback(): void
     {
-        $manager = $this->manager->withPublisher($this->publisher->withHashCallback(static fn (): string => 'hash'));
+        $manager = $this->manager->withPublisher($this->publisher->withHashCallback(static fn(): string => 'hash'));
 
         $this->assertEmpty($this->getRegisteredBundles($manager));
 
@@ -169,7 +171,7 @@ final class AssetPublisherTest extends TestCase
             ->withLinkAssets(true)
             ->withDirMode(0775)
             ->withFileMode(0775)
-            ->withHashCallback(static fn (string $path): string => sprintf('%x/%x', crc32($path), crc32('3.0-dev')))
+            ->withHashCallback(static fn(string $path): string => sprintf('%x/%x', crc32($path), crc32('3.0-dev')))
         ;
 
         [$bundle->basePath, $bundle->baseUrl] = $publisher->publish($bundle);
@@ -218,7 +220,7 @@ final class AssetPublisherTest extends TestCase
         $this->assertInstanceOf(AssetPublisherInterface::class, $publisher);
         $this->assertNotSame($this->publisher, $publisher);
 
-        $publisher = $this->publisher->withHashCallback(static fn (): string => 'hash');
+        $publisher = $this->publisher->withHashCallback(static fn(): string => 'hash');
         $this->assertInstanceOf(AssetPublisherInterface::class, $publisher);
         $this->assertNotSame($this->publisher, $publisher);
 

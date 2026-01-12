@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Assets;
 
+use Yiisoft\View\WebView;
+
 /**
  * `AssetBundle` represents a collection of asset files, such as CSS, JS, images.
  *
@@ -113,9 +115,9 @@ class AssetBundle
      *
      * When this package is used with [`yiisoft/view`](https://github.com/yiisoft/view), the possible values are:
      *
-     *  - {@see \Yiisoft\View\WebView::POSITION_HEAD} - in the head section. This is the default value.
-     *  - {@see \Yiisoft\View\WebView::POSITION_BEGIN} - at the beginning of the body section.
-     *  - {@see \Yiisoft\View\WebView::POSITION_END} - at the end of the body section.
+     *  - {@see WebView::POSITION_HEAD} - in the head section. This is the default value.
+     *  - {@see WebView::POSITION_BEGIN} - at the beginning of the body section.
+     *  - {@see WebView::POSITION_END} - at the end of the body section.
      */
     public ?int $cssPosition = null;
 
@@ -210,14 +212,14 @@ class AssetBundle
      *
      * When this package is used with [`yiisoft/view`](https://github.com/yiisoft/view), the possible values are:
      *
-     *  - {@see \Yiisoft\View\WebView::POSITION_HEAD} - in the head section. This is the default value
+     *  - {@see WebView::POSITION_HEAD} - in the head section. This is the default value
      *    for JavaScript variables.
-     *  - {@see \Yiisoft\View\WebView::POSITION_BEGIN} - at the beginning of the body section.
-     *  - {@see \Yiisoft\View\WebView::POSITION_END} - at the end of the body section. This is the default value
+     *  - {@see WebView::POSITION_BEGIN} - at the beginning of the body section.
+     *  - {@see WebView::POSITION_END} - at the end of the body section. This is the default value
      *    for JavaScript files and blocks.
-     *  - {@see \Yiisoft\View\WebView::POSITION_READY} - at the end of the body section (only for JavaScript strings and
+     *  - {@see WebView::POSITION_READY} - at the end of the body section (only for JavaScript strings and
      *    variables). This means the JavaScript code block will be executed when HTML document composition is ready.
-     *  - {@see \Yiisoft\View\WebView::POSITION_LOAD} - at the end of the body section (only for JavaScript strings and
+     *  - {@see WebView::POSITION_LOAD} - at the end of the body section (only for JavaScript strings and
      *    variables). This means the JavaScript code block will be executed when HTML page is completely loaded.
      */
     public ?int $jsPosition = null;

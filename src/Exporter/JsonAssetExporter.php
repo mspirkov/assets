@@ -20,8 +20,7 @@ final class JsonAssetExporter implements AssetExporterInterface
      */
     public function __construct(
         private readonly string $targetFile,
-    ) {
-    }
+    ) {}
 
     /**
      * @inheritDoc

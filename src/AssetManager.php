@@ -73,7 +73,7 @@ final class AssetManager
         Aliases $aliases,
         private AssetLoaderInterface $loader,
         private readonly array $allowedBundleNames = [],
-        private array $customizedBundles = []
+        private array $customizedBundles = [],
     ) {
         $this->registrar = new AssetRegistrar($aliases, $this->loader);
     }
@@ -330,6 +330,29 @@ final class AssetManager
     }
 
     /**
+     * Checks whether asset bundle are allowed by name {@see $allowedBundleNames}.
+     *
+     * @param string $name The asset bundle name to check.
+     *
+     * @throws InvalidConfigException For invalid asset bundle configuration.
+     * @throws RuntimeException If The asset bundle name is not allowed.
+     */
+    public function checkAllowedBundleName(string $name): void
+    {
+        if (isset($this->loadedBundles[$name]) || in_array($name, $this->allowedBundleNames, true)) {
+            return;
+        }
+
+        foreach ($this->allowedBundleNames as $bundleName) {
+            if ($this->isAllowedBundleDependencies($name, $this->loadBundle($bundleName))) {
+                return;
+            }
+        }
+
+        throw new RuntimeException("The \"{$name}\" asset bundle is not allowed.");
+    }
+
+    /**
      * Registers the named asset bundle.
      *
      * All dependent asset bundles will be registered.
@@ -376,8 +399,8 @@ final class AssetManager
                     $bundle->jsPosition = $jsPosition;
                 } elseif ($bundle->jsPosition > $jsPosition) {
                     throw new RuntimeException(
-                        "An asset bundle that depends on \"{$name}\" has a higher JavaScript file " .
-                        "position configured than \"{$name}\"."
+                        "An asset bundle that depends on \"{$name}\" has a higher JavaScript file "
+                        . "position configured than \"{$name}\".",
                     );
                 }
             }
@@ -387,8 +410,8 @@ final class AssetManager
                     $bundle->cssPosition = $cssPosition;
                 } elseif ($bundle->cssPosition > $cssPosition) {
                     throw new RuntimeException(
-                        "An asset bundle that depends on \"{$name}\" has a higher CSS file " .
-                        "position configured than \"{$name}\"."
+                        "An asset bundle that depends on \"{$name}\" has a higher CSS file "
+                        . "position configured than \"{$name}\".",
                     );
                 }
             }
@@ -474,29 +497,6 @@ final class AssetManager
         }
 
         return $bundle;
-    }
-
-    /**
-     * Checks whether asset bundle are allowed by name {@see $allowedBundleNames}.
-     *
-     * @param string $name The asset bundle name to check.
-     *
-     * @throws InvalidConfigException For invalid asset bundle configuration.
-     * @throws RuntimeException If The asset bundle name is not allowed.
-     */
-    public function checkAllowedBundleName(string $name): void
-    {
-        if (isset($this->loadedBundles[$name]) || in_array($name, $this->allowedBundleNames, true)) {
-            return;
-        }
-
-        foreach ($this->allowedBundleNames as $bundleName) {
-            if ($this->isAllowedBundleDependencies($name, $this->loadBundle($bundleName))) {
-                return;
-            }
-        }
-
-        throw new RuntimeException("The \"{$name}\" asset bundle is not allowed.");
     }
 
     /**

@@ -57,9 +57,8 @@ final class AssetRegistrar
 
     public function __construct(
         private Aliases $aliases,
-        private AssetLoaderInterface $loader
-    ) {
-    }
+        private AssetLoaderInterface $loader,
+    ) {}
 
     /**
      * @return array Config array of CSS files.
@@ -218,7 +217,7 @@ final class AssetRegistrar
                     $bundle->css[$i] = $this->converter->convert(
                         $css,
                         $bundle->basePath,
-                        $bundle->converterOptions
+                        $bundle->converterOptions,
                     );
                 }
             }
@@ -242,7 +241,7 @@ final class AssetRegistrar
                         $js[0] = $this->converter->convert(
                             $file,
                             $bundle->basePath,
-                            $bundle->converterOptions
+                            $bundle->converterOptions,
                         );
 
                         $bundle->js[$i] = $js;
@@ -280,7 +279,7 @@ final class AssetRegistrar
                 sprintf(
                     'CSS file should be string. Got %s.',
                     get_debug_type($url),
-                )
+                ),
             );
         }
 
@@ -357,7 +356,7 @@ final class AssetRegistrar
                 sprintf(
                     'JavaScript file should be string. Got %s.',
                     get_debug_type($url),
-                )
+                ),
             );
         }
 
@@ -438,7 +437,7 @@ final class AssetRegistrar
                 sprintf(
                     'Without string key JavaScript variable should be array. Got %s.',
                     get_debug_type($config),
-                )
+                ),
             );
         }
 
@@ -452,7 +451,7 @@ final class AssetRegistrar
                 sprintf(
                     'JavaScript variable name should be string. Got %s.',
                     get_debug_type($name),
-                )
+                ),
             );
         }
 
@@ -467,7 +466,7 @@ final class AssetRegistrar
                 sprintf(
                     'JavaScript variable position should be integer. Got %s.',
                     get_debug_type($position),
-                )
+                ),
             );
         }
 
@@ -482,7 +481,7 @@ final class AssetRegistrar
         foreach ($options as $key => $value) {
             if (is_int($key)) {
                 throw new InvalidConfigException(
-                    'JavaScript or CSS options should be list of key/value pairs with string keys. Got integer key.'
+                    'JavaScript or CSS options should be list of key/value pairs with string keys. Got integer key.',
                 );
             }
 
